@@ -39,8 +39,13 @@ export default function HomePage() {
         setEmail('');
       }
 
-    } catch (error: any) {
-      setMessage(error.message);
+    } catch (error: unknown) { // FIX: Changed 'any' to 'unknown'
+      // Now we check if it's an Error object before accessing .message
+      if (error instanceof Error) {
+        setMessage(error.message);
+      } else {
+        setMessage('An unexpected error occurred.');
+      }
       setMessageType('error');
     } finally {
       setIsLoading(false);
