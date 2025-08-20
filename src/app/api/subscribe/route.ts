@@ -16,7 +16,7 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    const { error } = await supabase.from('subscribers').insert({ email });
+    const { error } = await supabase.from('Subscribers').insert({ email });
 
     if (error) {
       if (error.code === '23505') {
